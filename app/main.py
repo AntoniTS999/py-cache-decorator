@@ -4,9 +4,9 @@ from typing import Callable
 def cache(func: Callable) -> Callable:
     result_store = {}
 
-    def wrapper(*args, **kwargs) -> None:
+    def wrapper(*args) -> None:
         if args not in result_store:
-            result_store[args] = func(*args, **kwargs)
+            result_store[args] = func(*args)
             res = result_store[args]
             print("Calculating new result")
             return res
