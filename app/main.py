@@ -1,15 +1,17 @@
-from typing import Callable
+from typing import Callable, Any
 
 
 def cache(func: Callable) -> Callable:
-    result_store = {}
+    cash_store = {}
 
-    def wrapper(*args) -> None:
-        if args not in result_store:
-            result_store[args] = func(*args)
-            res = result_store[args]
+    def wrapper(*args) -> Any:
+
+        if args not in cash_store:
+            res = func(*args)
+            cash_store[args] = res
             print("Calculating new result")
             return res
-        print("Getting from cache")
-        return result_store[args]
+        else:
+            print("Getting from cache")
+            return cash_store[args]
     return wrapper
